@@ -1,0 +1,205 @@
+\documentclass[12pt]{scrartcl}
+
+
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{.25cm}
+
+\usepackage{graphicx}
+
+\usepackage{xcolor}
+
+\definecolor{darkred}{rgb}{0.5,0,0}
+\definecolor{darkgreen}{rgb}{0,0.5,0}
+\usepackage{hyperref}
+\hypersetup{
+  letterpaper,
+  colorlinks,
+  linkcolor=red,
+  citecolor=darkgreen,
+  menucolor=darkred,
+  urlcolor=blue,
+  pdfpagemode=none,
+  pdftitle={CS1 - Lab 14.0 - Java},
+  pdfauthor={Christopher M. Bourke},
+  pdfkeywords={}
+}
+
+\definecolor{MyDarkBlue}{rgb}{0,0.08,0.45}
+\definecolor{MyDarkRed}{rgb}{0.45,0.08,0}
+\definecolor{MyDarkGreen}{rgb}{0.08,0.45,0.08}
+
+\definecolor{mintedBackground}{rgb}{0.95,0.95,0.95}
+\definecolor{mintedInlineBackground}{rgb}{.90,.90,1}
+
+%\usepackage{newfloat}
+\usepackage[newfloat=true]{minted}
+\setminted{mathescape,
+               linenos,
+               autogobble,
+               frame=none,
+               framesep=2mm,
+               framerule=0.4pt,
+               %label=foo,
+               xleftmargin=2em,
+               xrightmargin=0em,
+               startinline=true,  %PHP only, allow it to omit the PHP Tags *** with this option, variables using dollar sign in comments are treated as latex math
+               numbersep=10pt, %gap between line numbers and start of line
+               style=default, %syntax highlighting style, default is "default"
+               			    %gallery: http://help.farbox.com/pygments.html
+			    	    %list available: pygmentize -L styles
+               bgcolor=mintedBackground} %prevents breaking across pages
+               
+\setmintedinline{bgcolor={mintedBackground}}
+\setminted[text]{bgcolor={mintedBackground},linenos=false,autogobble,xleftmargin=1em}
+%\setminted[php]{bgcolor=mintedBackgroundPHP} %startinline=True}
+\SetupFloatingEnvironment{listing}{name=Code Sample}
+\SetupFloatingEnvironment{listing}{listname=List of Code Samples}
+
+\title{CSCE 155 - Java}
+\subtitle{Lab 14.0 - Graphical User Interface Programming}
+\author{~}
+\date{~}
+
+\begin{document}
+
+\maketitle
+
+\section*{Prior to Lab}
+
+Before attending this lab:
+\begin{enumerate}
+  \item Read and familiarize yourself with this handout.
+\end{enumerate}
+
+Some additional resources that may help with this lab:
+\begin{itemize}
+  \item Oracle's Java Swing Tutorials:\\
+	\url{http://docs.oracle.com/javase/tutorial/uiswing/}
+  \item Another Swing tutorial:
+	\url{http://zetcode.com/tutorials/javaswingtutorial/}
+\end{itemize}
+
+\section*{Peer Programming Pair-Up}
+
+To encourage collaboration and a team environment, labs will be
+structured in a \emph{pair programming} setup.  At the start of
+each lab, you will be randomly paired up with another student 
+(conflicts such as absences will be dealt with by the lab instructor).
+One of you will be designated the \emph{driver} and the other
+the \emph{navigator}.  
+
+The navigator will be responsible for reading the instructions and
+telling the driver what to do next.  The driver will be in charge of the
+keyboard and workstation.  Both driver and navigator are responsible
+for suggesting fixes and solutions together.  Neither the navigator
+nor the driver is ``in charge.''  Beyond your immediate pairing, you
+are encouraged to help and interact and with other pairs in the lab.
+
+Each week you should alternate: if you were a driver last week, 
+be a navigator next, etc.  Resolve any issues (you were both drivers
+last week) within your pair.  Ask the lab instructor to resolve issues
+only when you cannot come to a consensus.  
+
+Because of the peer programming setup of labs, it is absolutely 
+essential that you complete any pre-lab activities and familiarize
+yourself with the handouts prior to coming to lab.  Failure to do
+so will negatively impact your ability to collaborate and work with 
+others which may mean that you will not be able to complete the
+lab.  
+
+\section{Lab Objectives \& Topics}
+At the end of this lab you should be familiar with the following
+\begin{itemize}
+  \item Graphical User Interface and Event-based Programming in Java using Swing
+  \item Compiling and running a GUI program
+\end{itemize}
+
+\section{Background}
+
+Many programs interact with users using a Graphical User 
+Interface (GUI).  Traditional GUI design involves the creation 
+and interaction of widgets: general graphical elements that 
+include labels, text boxes, buttons, etc.  Most GUI programming 
+is done using an Application Programmer Interface (API) 
+which is a library or framework that provides a lot of the core 
+functionality including:
+\begin{itemize}
+  \item A window manager that handles the interaction of widgets
+  \item A windowing system that works with the underlying operating 
+  	system and hardware to render the graphics
+  \item Factory functions that can be used to construct and configure widgets
+\end{itemize}
+The particular API that we will work with is Java?s Swing API which 
+is part of Java?s Standard Developer Kit (SDK).  Swing provides 
+functionality for creating and managing widgets as well as the 
+ability to change the look and feel of the application.  Because 
+it is Java, an application written in Swing will operate across 
+different operating systems and should provide the same user experience.
+
+\subsection*{A simple GUI program}
+
+We have provided a simple calculator program, (in the class file 
+\mintinline{text}{Calculator.java}) that simulates a simple calculator.  
+Two editable input boxes and one non-editable output box have 
+been implemented along with several buttons to support arithmetic 
+operations (addition and subtraction).  The operations work by 
+grabbing the values in the two input boxes, performing the 
+arithmetic operation and placing the result into the output box.
+
+You will extend the functionality of this program by adding another button 
+to support division.  To do this, you will need to add code to create and 
+configure the button, create an event listener (an \mintinline{java}{ActionListener}) 
+and register it with your button.  You will also need to add the button to 
+the appropriate container.
+
+\section{Activities}
+
+Clone the project code for this lab from GitHub using the following
+URL: \url{https://github.com/cbourke/CSCE155-Java-Lab14}.
+
+\subsection{Getting Familiar with Swing}
+
+Several additional Swing examples have been provided to you 
+including the incomplete calculator program.  Familiarize yourself 
+with the code by opening each source file and examining how they 
+operate.
+\begin{enumerate}
+  \item Open the source file for the three examples, \mintinline{text}{HelloWorld.java}, 
+ 	 \mintinline{text}{KeyPad.java}, and \mintinline{text}{Calculator.java} source files
+  \item Examine the source files and answer the questions on your worksheet 
+\end{enumerate}
+	 
+\subsection{Modifying the Program}
+
+You will now modify this program to support division.
+
+\begin{enumerate}
+  \item Run the \mintinline{java}{HelloWorld} class in Eclipse and 
+  	look at the code to get an idea of how GUI components work
+  \item Create a new button to support division:
+  \begin{enumerate}
+    \item In the \mintinline{java}{initializeGUI} method, declare a 
+    	new \mintinline{java}{JButton} object with the appropriate symbol 
+	representing division
+    \item Create and add \mintinline{java}{ActionListener} objects and 
+	associate them with your new button
+    \item Add your button to the appropriate container and in the appropriate 
+	order
+  \end{enumerate}
+  \item Compile your program and run it on several values to make sure it works; 
+  demonstrate your working version to a lab instructor.
+\end{enumerate}
+
+\section{Advanced Activity (optional)}
+
+\begin{enumerate}
+  \item Explore Swing further by changing the appearance of your calculator 
+	program by adding borders, colors, etc.  Add additional functionality by adding 
+	more buttons that compute mathematical functions.
+  \item Further explore Swing by changing the look and feel of your application.  
+	Read the following section of the Swing tutorial: \url{http://docs.oracle.com/javase/tutorial/uiswing/lookandfeel/index.html} 		and change the ``theme'' of your application.
+\end{enumerate}
+
+	
+\end{document}
